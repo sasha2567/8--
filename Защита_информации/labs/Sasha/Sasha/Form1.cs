@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Sasha
+{
+    public partial class CodingForm : Form
+    {
+        public CodingForm()
+        {
+            InitializeComponent();
+        }
+
+        private void codeSubstitution_Click(object sender, EventArgs e)
+        {
+            string result = "";
+            string alf =    "ABCDEFGHIJKLMNOPQRSTUVWXYZ .,!:;?-";
+            string alfres = "VWXYZ .,!:;?-KLMNOPQRSTUABCDEFGHIJ";
+            foreach (char c in inStringSubstitution.Text)
+            {
+                result += alfres[alf.IndexOf(c)];
+            }
+            outStringSubstitution.Text = result;
+        }
+
+        private void codeRearrange_Click(object sender, EventArgs e)
+        {
+            int[] permutation = {2, 5, 4, 3, 1};
+            string result = "";
+            for (int i = 0; i < inStringRearrange.TextLength; i+=5)
+            {
+                if (inStringRearrange.TextLength - i > 5)
+                {
+                    for (int k = 0; k < 5; k++)
+                    {
+                        result += inStringRearrange.Text[permutation[k] + i - 1];
+                    }
+                }
+                else
+                {
+                    if (inStringRearrange.TextLength - i > 2)
+                        for (int k = 0; k < inStringRearrange.TextLength - i; k++)
+                        {
+                            result += inStringRearrange.Text[permutation[k] + i - 1];
+                        }
+                    else
+                    {
+                        result += inStringRearrange.Text[inStringRearrange.TextLength - 1];
+                    }
+                }
+            }
+            outStringRearrange.Text = result;
+        }
+    }
+}
