@@ -87,6 +87,7 @@
             this.outStringRearrange.Name = "outStringRearrange";
             this.outStringRearrange.Size = new System.Drawing.Size(256, 26);
             this.outStringRearrange.TabIndex = 2;
+            this.outStringRearrange.TextChanged += new System.EventHandler(this.codeRearrange_Click);
             // 
             // inStringRearrange
             // 
@@ -95,6 +96,7 @@
             this.inStringRearrange.Name = "inStringRearrange";
             this.inStringRearrange.Size = new System.Drawing.Size(256, 26);
             this.inStringRearrange.TabIndex = 1;
+            this.inStringRearrange.TextChanged += new System.EventHandler(this.codeRearrange_Click);
             // 
             // label1
             // 
@@ -138,6 +140,7 @@
             this.outStringSubstitution.Name = "outStringSubstitution";
             this.outStringSubstitution.Size = new System.Drawing.Size(256, 26);
             this.outStringSubstitution.TabIndex = 6;
+            this.outStringSubstitution.TextChanged += new System.EventHandler(this.codeSubstitution_Click);
             // 
             // inStringSubstitution
             // 
@@ -146,6 +149,7 @@
             this.inStringSubstitution.Name = "inStringSubstitution";
             this.inStringSubstitution.Size = new System.Drawing.Size(256, 26);
             this.inStringSubstitution.TabIndex = 5;
+            this.inStringSubstitution.TextChanged += new System.EventHandler(this.codeSubstitution_Click);
             // 
             // label2
             // 
