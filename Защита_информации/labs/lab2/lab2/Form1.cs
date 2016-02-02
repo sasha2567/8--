@@ -25,10 +25,12 @@ namespace lab2
             Random rand = new Random();
             gamma = new int[WordTextBox.TextLength];
             string temp = "";
-            for (int i = 0; i < gamma.Length; i++)
+            gamma2[0] = (A_TrackBar.Value * rand.Next() + C_TrackBar.Value) % (int)Math.Pow(2, B_TrackBar.Value);
+            temp += (char)((int)Word_TextBox.Text[0] + gamma2[0]);
+            for (int i = 1; i < gamma.Length; i++)
             {
-                gamma[i] = (ATrackBar.Value * rand.Next() + CTrackBar.Value) % (int)Math.Pow(2, BTrackBar.Value);
-                temp += (char)((int)WordTextBox.Text[i] + (int)gamma[i]);
+                gamma[i] = (ATrackBar.Value * gamma[i - 1] + CTrackBar.Value) % (int)Math.Pow(2, BTrackBar.Value);
+                temp += (char)((int)WordTextBox.Text[i] + gamma[i]);
             }
             EncryptTextBox.Text = temp;
         }
@@ -48,7 +50,7 @@ namespace lab2
             string temp = "";
             for (int i = 0; i < gamma.Length; i++)
             {
-                temp += (char)((int)EncryptTextBox.Text[i] - (int)gamma[i]);
+                temp += (char)((int)EncryptTextBox.Text[i] - gamma[i]);
             }
             DecryptTextBox.Text = temp;
         }
@@ -68,14 +70,21 @@ namespace lab2
             }
             int ch = Convert.ToInt32(T_TextBox.Text);
             gamma2[0] = (A_TrackBar.Value * ch + C_TrackBar.Value) % (int)Math.Pow(2, B_TrackBar.Value);
-            temp += (char)((int)Word_TextBox.Text[0] + (int)gamma2[0]);
+            temp += (char)((int)Word_TextBox.Text[0] + gamma2[0]);
             for (int i = 1; i < gamma2.Length; i++)
             {
 
-                ch = (int)Word_TextBox.Text[i - 1];
-                ch = ch % 2;
+                int tmp = (int)Word_TextBox.Text[i - 1];
+                ch = 0;
+                for (int k = 1; k <= 8; k++)
+                {
+                    if (tmp % (int)Math.Pow(2, k) >= 0)
+                    {
+                        ch++;
+                    }
+                }
                 gamma2[i] = (A_TrackBar.Value * ch + C_TrackBar.Value) % (int)Math.Pow(2, B_TrackBar.Value);
-                temp += (char)((int)Word_TextBox.Text[i] + (int)gamma2[i]);
+                temp += (char)((int)Word_TextBox.Text[i] + gamma2[i]);
             }
             Encrypt_TextBox.Text = temp;
         }
@@ -85,7 +94,7 @@ namespace lab2
             string temp = "";
             for (int i = 0; i < gamma2.Length; i++)
             {
-                temp += (char)((int)Encrypt_TextBox.Text[i] - (int)gamma2[i]);
+                temp += (char)((int)Encrypt_TextBox.Text[i] - gamma2[i]);
             }
             Decrypt_TextBox.Text = temp;
         }

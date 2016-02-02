@@ -41,28 +41,18 @@ namespace Sasha
         {
             int[] permutation = {2, 5, 4, 3, 1};
             string result = "";
+            if (inStringRearrange.TextLength % 5 != 0)
+            {
+                MessageBox.Show("Ошибка. фраза не делиться нацело на блоки");
+                return;
+            }
             try
             {
                 for (int i = 0; i < inStringRearrange.TextLength; i += 5)
                 {
-                    if (inStringRearrange.TextLength - i > 5)
+                    for (int k = 0; k < 5; k++)
                     {
-                        for (int k = 0; k < 5; k++)
-                        {
-                            result += inStringRearrange.Text[permutation[k] + i - 1];
-                        }
-                    }
-                    else
-                    {
-                        if (inStringRearrange.TextLength - i > 2)
-                            for (int k = 0; k < inStringRearrange.TextLength - i; k++)
-                            {
-                                result += inStringRearrange.Text[permutation[k] + i - 1];
-                            }
-                        else
-                        {
-                            result += inStringRearrange.Text[inStringRearrange.TextLength - 1];
-                        }
+                        result += inStringRearrange.Text[permutation[k] + i - 1];
                     }
                 }
                 outStringRearrange.Text = result;
@@ -70,6 +60,7 @@ namespace Sasha
             catch
             {
                 MessageBox.Show("Ошибка. фраза не делиться нацело на блоки");
+                return;
             }
         }
     }
