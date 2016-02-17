@@ -1,0 +1,10 @@
+w = tf([10],[2, 3, 3, 0.5, 0.5, 1]);
+figure;
+t1 = pole(w);
+plot(t1);
+figure;
+nyquist(w);
+figure;
+bode(w);
+figure;
+step(w);
