@@ -64,7 +64,7 @@
             this.inTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.inTextBox.Location = new System.Drawing.Point(12, 29);
             this.inTextBox.Name = "inTextBox";
-            this.inTextBox.Size = new System.Drawing.Size(258, 23);
+            this.inTextBox.Size = new System.Drawing.Size(517, 23);
             this.inTextBox.TabIndex = 2;
             // 
             // encodeTextBox
@@ -72,7 +72,7 @@
             this.encodeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.encodeTextBox.Location = new System.Drawing.Point(12, 84);
             this.encodeTextBox.Name = "encodeTextBox";
-            this.encodeTextBox.Size = new System.Drawing.Size(258, 23);
+            this.encodeTextBox.Size = new System.Drawing.Size(517, 23);
             this.encodeTextBox.TabIndex = 4;
             // 
             // encodeLabel
@@ -90,7 +90,7 @@
             this.decodeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.decodeTextBox.Location = new System.Drawing.Point(12, 143);
             this.decodeTextBox.Name = "decodeTextBox";
-            this.decodeTextBox.Size = new System.Drawing.Size(258, 23);
+            this.decodeTextBox.Size = new System.Drawing.Size(517, 23);
             this.decodeTextBox.TabIndex = 6;
             // 
             // decodeLabel
@@ -116,7 +116,7 @@
             // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(354, 262);
+            this.ClientSize = new System.Drawing.Size(561, 262);
             this.Controls.Add(this.decode);
             this.Controls.Add(this.decodeTextBox);
             this.Controls.Add(this.decodeLabel);

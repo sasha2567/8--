@@ -32,14 +32,14 @@ namespace lab3
             return res;
         }
 
-        private string ByteToString(int i, string s)
+        private string ByteToString(UInt32 i, string s)
         {
             string res = "";
             byte[] Key = Encoding.UTF8.GetBytes(s);
-            res += (char)((i % 256) + Key[0]);
-            res += (char)(((i >> 8) % 256) + Key[1]);
-            res += (char)(((i >> 16) % 256) + Key[2]);
-            res += (char)(((i >> 24) % 256) + Key[3]);
+            res += (char)((i % 256) ^ Key[0]);
+            res += (char)(((i >> 8) % 256) ^ Key[1]);
+            res += (char)(((i >> 16) % 256) ^ Key[2]);
+            res += (char)(((i >> 24) % 256) ^ Key[3]);
             return res;
         }
 
@@ -73,6 +73,8 @@ namespace lab3
             int left_temp = ToBite(lkey);
             int right_temp = ToBite(rkey);
             string res = "";
+            UInt32 temp_mod_key;
+            //MessageBox.Show("6 с циклическим сдвигом влево на 31 равен " + RotateLeft(6, 31));
             for (int j = 0; j < inTextBox.TextLength; j += 16)
             {
                 string[] temp = new string[4];
@@ -84,9 +86,9 @@ namespace lab3
                 {
                     for (byte i = 1; i <= loopNumeric.Value; i++)
                     {
-                        if (i == 0)
+                        if (i == 1)
                         {
-                            int temp_mod_key = (int)RotateLeft((UInt32)left_temp, i) ^ (int)RotateRight((UInt32)right_temp, i);
+                            temp_mod_key = RotateLeft((UInt32)left_temp, i) ^ RotateRight((UInt32)right_temp, i);
                             Xcurrent[0] = sum(temp[1], ByteToString(temp_mod_key, temp[0]));
                             Xcurrent[1] = temp[2];
                             Xcurrent[2] = temp[3];
@@ -98,7 +100,7 @@ namespace lab3
                         }
                         else
                         {
-                            int temp_mod_key = (int)RotateLeft((UInt32)left_temp, i) ^ (int)RotateRight((UInt32)right_temp, i);
+                            temp_mod_key = RotateLeft((UInt32)left_temp, i) ^ RotateRight((UInt32)right_temp, i);
                             Xcurrent[0] = sum(Xprevious[1], ByteToString(temp_mod_key, Xprevious[0]));
                             Xcurrent[1] = Xprevious[2];
                             Xcurrent[2] = Xprevious[3];
@@ -109,22 +111,22 @@ namespace lab3
                             Xprevious[3] = Xcurrent[3];
                         }
                     }
-                    Xcurrent[0] = Xprevious[1];
-                    Xcurrent[1] = Xprevious[2];
-                    Xcurrent[2] = Xprevious[3];
-                    Xcurrent[3] = Xprevious[0];
+                    //Xcurrent[0] = Xprevious[1];
+                    //Xcurrent[1] = Xprevious[2];
+                    //Xcurrent[2] = Xprevious[3];
+                    //Xcurrent[3] = Xprevious[0];
                 }
                 else
                 {
                     for (byte i = (byte)loopNumeric.Value; i > 0; i--)
                     {
-                        if (i == 0)
+                        if (i == (byte)loopNumeric.Value)
                         {
-                            int temp_mod_key = (int)RotateLeft((UInt32)left_temp, i) ^ (int)RotateRight((UInt32)right_temp, i);
-                            Xcurrent[3] = sum(temp[0], ByteToString(temp_mod_key, temp[3]));
-                            Xcurrent[2] = temp[3];
-                            Xcurrent[1] = temp[2];
-                            Xcurrent[0] = temp[1];
+                            temp_mod_key = RotateLeft((UInt32)left_temp, i) ^ RotateRight((UInt32)right_temp, i);
+                            Xcurrent[1] = sum(temp[0], ByteToString(temp_mod_key, temp[3]));
+                            Xcurrent[2] = temp[1];
+                            Xcurrent[3] = temp[2];
+                            Xcurrent[0] = temp[3];
                             Xprevious[0] = Xcurrent[0];
                             Xprevious[1] = Xcurrent[1];
                             Xprevious[2] = Xcurrent[2];
@@ -132,22 +134,23 @@ namespace lab3
                         }
                         else
                         {
-                            int temp_mod_key = (int)RotateLeft((UInt32)left_temp, i) ^ (int)RotateRight((UInt32)right_temp, i);
-                            Xcurrent[3] = sum(Xprevious[0], ByteToString(temp_mod_key, Xprevious[3]));
-                            Xcurrent[2] = Xprevious[3];
-                            Xcurrent[1] = Xprevious[2];
-                            Xcurrent[0] = Xprevious[1];
+                            temp_mod_key = RotateLeft((UInt32)left_temp, i) ^ RotateRight((UInt32)right_temp, i);
+                            Xcurrent[1] = sum(Xprevious[0], ByteToString(temp_mod_key, Xprevious[3]));
+                            Xcurrent[2] = Xprevious[1];
+                            Xcurrent[3] = Xprevious[2];
+                            Xcurrent[0] = Xprevious[3];
                             Xprevious[0] = Xcurrent[0];
                             Xprevious[1] = Xcurrent[1];
                             Xprevious[2] = Xcurrent[2];
                             Xprevious[3] = Xcurrent[3];
                         }
                     }
-                    Xcurrent[0] = Xprevious[1];
-                    Xcurrent[1] = Xprevious[2];
-                    Xcurrent[2] = Xprevious[3];
-                    Xcurrent[3] = Xprevious[0];
+                    //Xcurrent[1] = Xprevious[0];
+                    //Xcurrent[2] = Xprevious[1];
+                    //Xcurrent[3] = Xprevious[2];
+                    //Xcurrent[0] = Xprevious[3];
                 }
+                
                 res += Xcurrent[0] + Xcurrent[1] + Xcurrent[2] + Xcurrent[3];
             }
             outTextBox.Text = res;

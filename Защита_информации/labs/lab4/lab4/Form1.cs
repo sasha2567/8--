@@ -15,15 +15,18 @@ namespace lab4
         public Form1()
         {
             InitializeComponent();
-            Random rd = new Random();
-            P = 19;
-            Q = 23;
+            //Random rd = new Random();
+            P = 11;
+            Q = 13;
             N = P * Q;
             M = (P - 1) * (Q - 1);
-            int temp = (int)(P < Q ? P : Q);
-            E = 13;
-            D = 61;
+            //int temp = (int)(P < Q ? P : Q);
+            E = 7;
+            D = 103;
         }
+
+        private int textlength = 0;
+        double[] key;
 
         private int P, Q;
         private long N, D, E, M;
@@ -31,21 +34,25 @@ namespace lab4
         private void encode_Click(object sender, EventArgs e)
         {
             encodeTextBox.Text = "";
-            for (int i = 0; i < inTextBox.TextLength; i++)
+            textlength = inTextBox.TextLength;
+            key = new double[textlength];
+            for (int i = 0; i < textlength; i++)
             {
-                int t = (int)Math.Pow((int)inTextBox.Text[i], E);
-                encodeTextBox.Text += (char)(t % N);
-                MessageBox.Show("значение" + (t % N) + " для " + i + "-ого символа");
+                double t = Math.Pow((double)inTextBox.Text[i], (double)E);
+                double m = (t % N);
+                key[i] = m;
+                encodeTextBox.Text += m + "(" + (char)m + ")/";
             }
         }
 
         private void decode_Click(object sender, EventArgs e)
         {
             decodeTextBox.Text = "";
-            for (int i = 0; i < encodeTextBox.TextLength; i++)
+            for (int i = 0; i < textlength; i++)
             {
-                int t = (int)Math.Pow((int)encodeTextBox.Text[i], D);
-                decodeTextBox.Text += (char)(t % N);
+                double t = Math.Pow(key[i], (double)D);
+                double m = (t % N);
+                decodeTextBox.Text += m + "(" + (char)m + ")/";
             }
         }
     }
