@@ -1,0 +1,17 @@
+close all;
+clear;
+clc;
+H=tf([1],[1, 1])
+R0=tf([1],[1, 0])
+P=tf([0.06],[16, 1, 0])
+R=feedback(R0,1)
+G=R*P
+figure;
+step(G);
+W=feedback(G,H)
+figure;
+step(W);
+sisotool
+Wd=tf([1, 0],[1, 1])
+Wp=tf([1],[1])
+C=parallel(Wp,Wd)
