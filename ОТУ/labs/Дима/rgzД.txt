@@ -1,0 +1,18 @@
+close all;
+clear;
+clc;
+R1=5
+R2=10
+C=0.0001
+P=tf([1],[C*(R1*R2)/(R1+R2) 1, 0])
+figure;
+impulse(P);
+figure;
+step(P);
+figure;
+T = pole(P);
+plot(T);
+figure;
+nyquist(P);
+figure;
+bode(P);
