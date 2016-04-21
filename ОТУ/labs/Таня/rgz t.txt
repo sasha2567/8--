@@ -5,7 +5,7 @@ clc;
 R=200
 L=0.001
 C=0.00005
-P=tf([C, 0, 1/L],[C, 1/R, 1/L])
+P=tf([1/R, 0, 1/L],[(C*R+C)/C*R, 0, 1/L])
 T1 = pole(P)
 figure;
 impulse(P);

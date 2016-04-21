@@ -1,12 +1,12 @@
 Model {
-  Name			  "rgz"
+  Name			  "rgz_t"
   Version		  7.8
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.10"
+    ComputedModelVersion    "1.12"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -27,9 +27,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "irina"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Mar 29 10:41:31 2016"
-  RTWModifiedTimeStamp	  381142188
-  ModelVersionFormat	  "1.%<AutoIncrement:10>"
+  LastModifiedDate	  "Thu Mar 31 21:03:51 2016"
+  RTWModifiedTimeStamp	  381357745
+  ModelVersionFormat	  "1.%<AutoIncrement:12>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -67,6 +67,7 @@ Model {
     $ObjectID		    1
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "rgz"
+    signals_		    []
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
@@ -714,7 +715,7 @@ Model {
     }
   }
   System {
-    Name		    "rgz"
+    Name		    "rgz_t"
     Location		    [713, 116, 1249, 541]
     Open		    on
     ModelBrowserVisibility  off
@@ -746,10 +747,10 @@ Model {
       IntegratorMethod	      "Forward Euler"
       FilterMethod	      "Forward Euler"
       Form		      "Parallel"
-      P			      "0"
-      I			      "-928.445807849279"
-      D			      "0"
-      N			      "100"
+      P			      "-37.1014890910522"
+      I			      "-0.926465463195954"
+      D			      "-134.889807509805"
+      N			      "6.74236067251986"
       InitialConditionSource  "internal"
       InitialConditionForIntegrator "0"
       InitialConditionForFilter	"0"
@@ -895,8 +896,8 @@ Model {
       SID		      "8"
       Position		      [255, 85, 390, 125]
       ZOrder		      -9
-      Numerator		      "[C 0 1/L]"
-      Denominator	      "[C 1/R 1/L]"
+      Numerator		      "[1/R 0 1/L]"
+      Denominator	      "[(C*R+C)/C*R 0 1/L]"
     }
     Line {
       SrcBlock		      "Step"
